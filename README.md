@@ -38,12 +38,12 @@
 
 | 猫头鹰·小智（基础款） | 小狐狸·巧巧（女生款） | 机甲战警（男生款） | 互动场景 |
 |:---:|:---:|:---:|:---:|
-| ![猫头鹰小智](pic/hero_owl_desk.png) | ![小狐狸巧巧](pic/hero_fox_desk.png) | ![机甲战警](pic/robot_mecha.png) | ![互动场景](pic/child_interaction.png) |
+| ![猫头鹰小智](hero_owl_desk.png) | ![小狐狸巧巧](hero_fox_desk.png) | ![机甲战警](robot_mecha.png) | ![互动场景](child_interaction.png) |
 | 呆萌学霸 · 圆眼+眼镜 | 俏皮可爱 · 毛茸尾巴 | 酷炫科技 · LED眼灯 | 孩子与精灵共同学习 |
 
 ### 产品展示
 
-![产品渲染图](pic/product_showcase.png)
+![产品渲染图](product_showcase.png)
 
 > 📐 **尺寸**：15cm（手掌大小）· **材质**：亲肤硅胶 · **屏幕**：LED 表情眼 · **底座**：氛围灯 + 无线充电
 
@@ -84,7 +84,7 @@
 
 | 词云 | 痛点柱状图 | 痛点饼图 |
 |:---:|:---:|:---:|
-| ![词云](output/wordcloud.png) | ![柱状图](output/pain_points_chart.png) | ![饼图](output/pain_points_pie.png) |
+| ![柱状图](pain_points_chart.png) | ![饼图](pain_points_pie.png) |
 
 ### 用户真实声音（节选）
 
@@ -246,7 +246,6 @@
 ```
 硬件AI_数据采集/
 │
-├── 🏆 A4_结果展示.html          ← 一页A4信息图（打印/PDF）
 ├── 📱 parent_app_prototype.html ← 家长端小程序原型（可交互）
 ├── 🔧 ai_workflow_demo.html     ← AI工作流 + Prompt + 规则
 ├── 📊 product_comparison.html   ← 10维度竞品对比
