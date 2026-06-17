@@ -25,7 +25,6 @@
 
 | 文件 | 内容 | 操作 |
 |------|------|------|
-| [**A4_结果展示.html**](A4_结果展示.html) | 🏆 一页 A4 机会验证总览（打印级排版） | 双击 → Ctrl+P 打印/保存PDF |
 | [**parent_app_prototype.html**](parent_app_prototype.html) | 📱 家长端微信小程序高保真原型 | 双击 → 手机上效果 |
 | [**ai_workflow_demo.html**](ai_workflow_demo.html) | 🔧 AI 工作流 + 核心 Prompt + 判定规则 | 双击 → 技术架构一目了然 |
 | [**product_comparison.html**](product_comparison.html) | 📊 瞳学AI vs 4类竞品 · 10维度对比 | 双击 → 定位分析 |
