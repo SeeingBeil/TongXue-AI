@@ -1,6 +1,7 @@
   # 瞳学AI · 学习精灵 🦉
 
   桌面AI学习伴侣——硬件AI创业机会验证报告
+![Uploading ChatGPT Image 2026年6月17日 20_23_46.png…]()
 
   ## 项目内容
   - 📊 用户证据：跨平台53条真实数据（知乎/小红书/淘宝/抖音/Reddit）
@@ -14,8 +15,4 @@
   - 数据采集：Python爬虫
   - 分析报告：Python jieba + WordCloud + matplotlib
 
-  ## 快速浏览
-  - [家长端原型](parent_app_prototype.html)
-  - [AI工作流](ai_workflow_demo.html)
-  - [竞品对比](product_comparison.html)
-  - [提示词汇总](prompt_collection.md)
+
