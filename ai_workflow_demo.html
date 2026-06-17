@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瞳学AI - AI 工作流示意图</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #0f0f23;
+            color: white;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #6c63ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .flow-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 三阶段布局 */
+        .stage-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stage {
+            background: rgba(108, 99, 255, 0.08);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            flex: 1;
+        }
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .stage-number {
+            width: 28px; height: 28px;
+            background: #6c63ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .stage-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .stage-desc {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
+        .model-list {
+            list-style: none;
+        }
+        .model-list li {
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            border-left: 3px solid #6c63ff;
+        }
+        .model-list li .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-right: 8px;
+        }
+        .tag.edge { background: #4ade80; color: #000; }
+        .tag.cloud { background: #60a5fa; color: #000; }
+        .tag.vision { background: #fbbf24; color: #000; }
+
+        .flow-arrow {
+            text-align: center;
+            font-size: 28px;
+            color: #6c63ff;
+            padding: 8px 0;
+        }
+
+        .data-table {
+            margin-top: 40px;
+            background: rgba(108, 99, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(108, 99, 255, 0.15);
+        }
+        .data-table h3 {
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: #a78bfa;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            text-align: left;
+            padding: 10px 12px;
+            background: rgba(108,99,255,0.1);
+            color: #c4b5fd;
+            font-weight: 500;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: #ccc;
+        }
+
+        /* 云朵连接线 */
+        .connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #6c63ff;
+            font-size: 14px;
+            padding: 4px 0;
+        }
+        .connector span { font-size: 24px; }
+
+        @media (max-width: 768px) {
+            .stage-row { flex-direction: column; }
+            body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>瞳学 AI · 技术工作流</h1>
+    <p class="subtitle">端侧轻量模型 + 云端大模型 → 实时检测 + 智能分析</p>
+
+    <div class="flow-container">
+
+        <!-- 第一阶段 -->
+        <div class="stage-row">
+            <div class="stage">
+                <div class="stage-header">
+                    <span class="stage-number">1</span>
+                    <span class="stage-title">📸 端侧实时检测 (2fps)</span>
+                </div>
+                <div class="stage-desc">在精灵本体运行，全部本地推理，不上传视频流</div>
+                <ul class="model-list">
+                    <li><span class="tag edge">MediaPipe Face Mesh</span> 人脸检测 + 视线方向 (30fps)</li>
+                    <li><span class="tag edge">MoveNet Pose</span> 身体姿势估计 (20fps) → 趴/歪/正</li>
+                    <li><span class="tag edge">SSD-MobileNet</span> 手机/平板物体检测 (15fps)</li>
+                    <li><span class="tag edge">距离算法</span> 面部框大小 → 估算眼睛距桌面距离</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="connector">
+            <span>⬇</span> 每5秒输出状态向量 <span>⬇</span>
+        </div>
+
+        <!-- 第二阶段 -->
+        <div class="stage-row">
+            <div class="stage">
+                <div class="stage-header">
+                    <span class="stage-number">2</span>
+                    <span class="stage-title">☁️ 云端 AI 分析</span>
+                </div>
+                <div class="stage-desc">收到状态序列 → 综合分析 → 决策</div>
+                <ul class="model-list">
+                    <li><span class="tag cloud">GPT-4o-mini</span> 专注度判定 + 状态分类 (专注/走神/离开)</li>
+                    <li><span class="tag cloud">自定义规则引擎</span> 灰度判断逻辑 (见Prompt设计)</li>
+                    <li><span class="tag cloud">时序分析</span> 5分钟窗口滑动判定疲劳/模式</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="connector">
+            <span>⬇</span> 决策结果 <span>⬇</span>
+        </div>
+
+        <!-- 第三阶段 -->
+        <div class="stage-row">
+            <div class="stage">
+                <div class="stage-header">
+                    <span class="stage-number">3</span>
+                    <span class="stage-title">🎯 多端输出</span>
+                </div>
+                <div class="stage-desc">决策结果分发到不同终端</div>
+                <ul class="model-list">
+                    <li><span class="tag edge">🦉 精灵表情 + 语音</span> 实时提醒孩子（不打断专注）</li>
+                    <li><span class="tag cloud">📱 家长端推送</span> 走神通知 + 每日报告 + 周报</li>
+                    <li><span class="tag cloud">📊 数据仪表盘</span> 学习趋势 + 坐姿分析 + 专注模式</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Prompt 设计 -->
+        <div class="data-table" style="margin-top: 40px;">
+            <h3>🧠 核心 Prompt 设计（云端 AI）</h3>
+            <div style="background: #1a1a3e; border-radius: 12px; padding: 20px; font-size: 13px; line-height: 1.8; color: #c4b5fd; white-space: pre-wrap; font-family: 'Courier New', monospace;">
+你是瞳学AI的学习监督助手，名叫小智。
+
+输入：过去5分钟的学生行为状态序列，格式如下：
+[{t: "14:01:00", face: true, gaze: "book", posture: "upright", distance: 35, phone: false},
+ {t: "14:01:05", face: true, gaze: "book", posture: "upright", distance: 35, phone: false}, ...]
+
+请判断：
+1. 总体状态（专注/轻微走神/明显分心/离开座位）
+2. 走神原因（玩手机/发呆/离开/东张西望）
+3. 是否需要提醒？若需要，选择提醒方式
+4. 距离是否过近 (<30cm)？姿势是否正确？
+5. 5分钟内专注时长占比
+
+输出JSON：
+{"state": "focused|distracted|away|phone",
+ "confidence": 0-100,
+ "alert_needed": true|false,
+ "alert_type": "voice|parent|silent",
+ "distance_warn": true|false,
+ "posture_warn": true|false,
+ "focus_minutes": 0-5,
+ "summary": "一句话总结"}
+            </div>
+        </div>
+
+        <!-- 灰度判定规则 -->
+        <div class="data-table">
+            <h3>📊 严重程度判定规则（端侧+云端融合）</h3>
+            <table>
+                <tr>
+                    <th>等级</th><th>条件</th><th>动作</th>
+                </tr>
+                <tr>
+                    <td style="color: #4ade80;">🟢 正常</td>
+                    <td>连续 ≥ 3分钟 face=true, gaze=book, posture=upright</td>
+                    <td>沉默 / 每15分钟轻声鼓励</td>
+                </tr>
+                <tr>
+                    <td style="color: #fbbf24;">🟡 轻微走神</td>
+                    <td>gaze!=book 持续 30-90秒</td>
+                    <td>精灵打哈欠动画 或 轻声提醒"我快睡着了~"</td>
+                </tr>
+                <tr>
+                    <td style="color: #fb923c;">🟠 明显分心</td>
+                    <td>phone=true 或 gaze!=book >90秒</td>
+                    <td>精灵转身不理人 + push家长通知</td>
+                </tr>
+                <tr>
+                    <td style="color: #f87171;">🔴 离开座位</td>
+                    <td>face=false >120秒</td>
+                    <td>push紧急通知 + 记录离开时长</td>
+                </tr>
+                <tr>
+                    <td style="color: #f87171;">🔴 距离过近</td>
+                    <td>distance < 30cm 持续 >30秒</td>
+                    <td>精灵担忧表情 + 语音"太近了，对眼睛不好哦"</td>
+                </tr>
+                <tr>
+                    <td style="color: #fbbf24;">🟡 姿势异常</td>
+                    <td>posture!=upright 持续 >60秒</td>
+                    <td>精灵歪头模仿 + "你现在的姿势和我好像~"</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 数据流图 -->
+        <div class="data-table" style="margin-top: 24px;">
+            <h3>🔁 完整数据流</h3>
+            <div style="text-align: center; font-size: 14px; line-height: 2.2; color: #aaa;">
+                摄像头(2fps) → 端侧AI(本地推理) ─(每5秒状态向量)─→ 云端AI(综合分析) ──┬──→ 精灵表情/语音回应孩子<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├──→ 家长端推送通知<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └──→ 每日报告 + 历史趋势
+                <br><br>
+                <span style="color: #4ade80;">▸ 不上传视频流，只上传结构化状态数据</span>
+                <br>
+                <span style="color: #fbbf24;">▸ 端侧推理延迟 < 50ms，端到端 < 3s</span>
+                <br>
+                <span style="color: #60a5fa;">▸ 隐私设计：物理镜头盖 + 本地优先</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

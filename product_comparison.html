@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瞳学AI vs 竞品对比</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f6fa;
+            padding: 40px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 32px;
+        }
+        .highlight { color: #6c63ff; }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .compare-table th {
+            padding: 16px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .compare-table td {
+            padding: 14px 20px;
+            font-size: 13px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .compare-table thead th {
+            background: #1a1a2e;
+            color: white;
+        }
+        .compare-table thead th:first-child {
+            text-align: left;
+            padding-left: 24px;
+        }
+        .compare-table tbody td:first-child {
+            text-align: left;
+            font-weight: 500;
+            padding-left: 24px;
+        }
+        .compare-table tbody tr:nth-child(even) {
+            background: #fafafe;
+        }
+        .compare-table tbody tr:hover {
+            background: #f0efff;
+        }
+
+        .tag-own {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .tag-own.win { background: #d4edda; color: #155724; }
+        .tag-own.lose { background: #f8d7da; color: #721c24; }
+        .tag-own.tie { background: #e2e3e5; color: #383d41; }
+
+        .price-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6c63ff, #a78bfa);
+            color: white;
+        }
+        .price-badge small {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .verdict {
+            margin-top: 32px;
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .verdict h3 {
+            color: #1a1a2e;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .verdict p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+        .verdict strong { color: #6c63ff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>瞳学 <span class="highlight">AI</span> · 学习精灵</h1>
+        <p class="subtitle">产品定位对比：桌面AI学习伴侣 vs 现有方案</p>
+
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th style="width: 18%;">对比维度</th>
+                    <th style="width: 18%;">🦉 瞳学AI</th>
+                    <th style="width: 14%;">普通摄像头</th>
+                    <th style="width: 14%;">智能学习机</th>
+                    <th style="width: 14%;">坐姿矫正器</th>
+                    <th style="width: 14%;">AI App/软件</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>定价</td>
+                    <td><span class="price-badge">¥499<small>/+19.9月</small></span></td>
+                    <td>¥99-299</td>
+                    <td>¥2000-8000</td>
+                    <td>¥39-199</td>
+                    <td>¥0-19.9/月</td>
+                </tr>
+                <tr>
+                    <td>孩子接受度</td>
+                    <td><span class="tag-own win">很高 🧸 喜欢</span></td>
+                    <td><span class="tag-own lose">很低 ❌ 反感</span></td>
+                    <td><span class="tag-own tie">中 ⚠️ 双刃剑</span></td>
+                    <td><span class="tag-own lose">低 ❌ 偷偷取下</span></td>
+                    <td><span class="tag-own tie">中 ⚠️ 依赖手机</span></td>
+                </tr>
+                <tr>
+                    <td>专注检测</td>
+                    <td><span class="tag-own win">自动 ✅ AI实时</span></td>
+                    <td><span class="tag-own lose">无 ❌ 需人盯</span></td>
+                    <td><span class="tag-own lose">无 ❌ 无法检测</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">无 ❌ 手动计时</span></td>
+                </tr>
+                <tr>
+                    <td>坐姿检测</td>
+                    <td><span class="tag-own win">AI视觉 ✅ 无感</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own win">物理检测 ✅</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                </tr>
+                <tr>
+                    <td>防近视(距离)</td>
+                    <td><span class="tag-own win">AI检测 ✅ 实时</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">部分型号有 ⚠️</span></td>
+                    <td><span class="tag-own win">有 ✅</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                </tr>
+                <tr>
+                    <td>学习报告</td>
+                    <td><span class="tag-own win">自动日报/周报 📊</span></td>
+                    <td><span class="tag-own lose">无 ❌ 看回放</span></td>
+                    <td><span class="tag-own tie">学习进度 ⚠️</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own tie">基础统计 ⚠️</span></td>
+                </tr>
+                <tr>
+                    <td>家长远程</td>
+                    <td><span class="tag-own win">实时+报告+表扬 ✅</span></td>
+                    <td><span class="tag-own tie">实时画面 ⚠️</span></td>
+                    <td><span class="tag-own lose">有限 ❌</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own win">部分有 ✅</span></td>
+                </tr>
+                <tr>
+                    <td>隐私保护</td>
+                    <td><span class="tag-own win">物理镜头盖 🔒</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own win">不涉及 ✅</span></td>
+                    <td><span class="tag-own lose">需摄像头权限 ⚠️</span></td>
+                </tr>
+                <tr>
+                    <td>情感交互</td>
+                    <td><span class="tag-own win">拟人化精灵 🦉</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">无 ❌</span></td>
+                    <td><span class="tag-own lose">无/机械 ⚠️</span></td>
+                </tr>
+                <tr>
+                    <td>可作弊性</td>
+                    <td><span class="tag-own win">极低 ✅ 硬件无感</span></td>
+                    <td><span class="tag-own lose">高 ⚠️ 关了就行</span></td>
+                    <td><span class="tag-own lose">高 ⚠️ 能偷玩</span></td>
+                    <td><span class="tag-own lose">高 ❌ 可取下</span></td>
+                    <td><span class="tag-own lose">很高 ❌ 可关闭</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="verdict">
+            <h3>💡 市场定位总结</h3>
+            <p>
+                <strong>瞳学AI</strong> 不是在学习机和摄像头之间竞争——它开创了一个<strong>全新品类</strong>：<br><br>
+                🎯 <strong>比普通摄像头</strong>：多了 AI 大脑 + 拟人交互（解决"没人盯"的问题）<br>
+                🎯 <strong>比学习机</strong>：价格低 80% + 真正有监督功能（解决"不知学没学"的问题）<br>
+                🎯 <strong>比坐姿矫正器</strong>：无感 + 多功能（解决"孩子不戴"的问题）<br>
+                🎯 <strong>比AI App</strong>：硬件壁垒 + 不可作弊（解决"孩子关掉"的问题）<br><br>
+                <strong>核心卖点一句话：¥499 的价格，给孩子一个 AI 学习伙伴——而不是一个监控摄像头。</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

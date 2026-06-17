@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>瞳学AI - 家长端 Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f6fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 24px;
+            font-size: 12px;
+            color: #333;
+        }
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px 16px;
+        }
+        .app-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .app-title span { color: #6c63ff; }
+        .header-icons { display: flex; gap: 16px; }
+        .icon-btn {
+            width: 36px; height: 36px;
+            background: #f0efff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .elf-card {
+            margin: 0 20px 16px;
+            background: linear-gradient(135deg, #6c63ff, #a78bfa);
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 8px 25px rgba(108,99,255,0.3);
+        }
+        .elf-avatar {
+            width: 64px; height: 64px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+        .elf-info { flex: 1; }
+        .elf-name { font-size: 18px; font-weight: 600; }
+        .elf-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+        .elf-status {
+            display: flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .status-dot {
+            width: 8px; height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 0 20px 16px;
+        }
+        .stat-card {
+            background: #f8f7ff;
+            border-radius: 14px;
+            padding: 14px 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .stat-value.green { color: #4ade80; }
+        .stat-value.orange { color: #fb923c; }
+        .stat-value.purple { color: #6c63ff; }
+        .stat-label {
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin-bottom: 12px;
+        }
+        .section-title h3 { font-size: 16px; color: #1a1a2e; }
+        .section-title a { font-size: 13px; color: #6c63ff; text-decoration: none; }
+
+        .timeline {
+            margin: 0 20px 16px;
+            background: #f8f7ff;
+            border-radius: 16px;
+            padding: 16px;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .timeline-item:last-child { border: none; }
+        .time-tag {
+            font-size: 11px;
+            color: #aaa;
+            width: 52px;
+            flex-shrink: 0;
+        }
+        .tl-status {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .tl-status.green { background: #4ade80; }
+        .tl-status.red { background: #f87171; }
+        .tl-status.yellow { background: #fbbf24; }
+        .tl-status.purple { background: #a78bfa; }
+        .tl-text { font-size: 13px; color: #333; flex: 1; }
+
+        .week-chart {
+            margin: 0 20px 16px;
+            background: #f8f7ff;
+            border-radius: 16px;
+            padding: 16px;
+        }
+        .week-bars {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 80px;
+            margin-top: 8px;
+        }
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .bar {
+            width: 28px;
+            border-radius: 6px 6px 2px 2px;
+            transition: height 0.5s;
+        }
+        .bar-label { font-size: 10px; color: #888; }
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 24px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: #aaa;
+            cursor: pointer;
+        }
+        .nav-item.active { color: #6c63ff; }
+        .nav-item .icon { font-size: 22px; }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <span>9:41</span>
+            <span>📶 🔋 100%</span>
+        </div>
+
+        <!-- 头部 -->
+        <div class="app-header">
+            <div class="app-title">瞳学<span>AI</span></div>
+            <div class="header-icons">
+                <div class="icon-btn">🔔</div>
+                <div class="icon-btn">⚙️</div>
+            </div>
+        </div>
+
+        <!-- 精灵卡片 -->
+        <div class="elf-card">
+            <div class="elf-avatar">🦉</div>
+            <div class="elf-info">
+                <div class="elf-name">小智 · 正在陪我学习</div>
+                <div class="elf-sub">猫头鹰精灵 · 已陪伴 23 天</div>
+                <div class="elf-status">
+                    <span class="status-dot"></span>
+                    学习中 · 已专注 38 分钟
+                </div>
+            </div>
+        </div>
+
+        <!-- 快速统计 -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-value green">3h12m</div>
+                <div class="stat-label">今日学习</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value orange">12</div>
+                <div class="stat-label">走神次数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value purple">78%</div>
+                <div class="stat-label">专注率</div>
+            </div>
+        </div>
+
+        <!-- 时间线 -->
+        <div class="section-title">
+            <h3>⏱ 今日学习时间线</h3>
+            <a href="#">查看全部 →</a>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="time-tag">14:00-14:45</span>
+                <span class="tl-status green"></span>
+                <span class="tl-text">专心完成数学作业</span>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">14:45-14:52</span>
+                <span class="tl-status red"></span>
+                <span class="tl-text">⚠️ 走神 · 拿起手机</span>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">14:52-15:30</span>
+                <span class="tl-status green"></span>
+                <span class="tl-text">专心背英语单词</span>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">15:30-15:35</span>
+                <span class="tl-status yellow"></span>
+                <span class="tl-text">🪑 坐姿提醒 · 调整姿势</span>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">15:35-16:10</span>
+                <span class="tl-status purple"></span>
+                <span class="tl-text">📸 AI拍照检查作业</span>
+            </div>
+        </div>
+
+        <!-- 每周趋势 -->
+        <div class="section-title">
+            <h3>📊 本周专注趋势</h3>
+            <a href="#">详细报告 →</a>
+        </div>
+        <div class="week-chart">
+            <div class="week-bars">
+                <div class="bar-item">
+                    <div class="bar" style="height: 58px; background: #6c63ff;"></div>
+                    <span class="bar-label">周一<br>68%</span>
+                </div>
+                <div class="bar-item">
+                    <div class="bar" style="height: 66px; background: #6c63ff;"></div>
+                    <span class="bar-label">周二<br>72%</span>
+                </div>
+                <div class="bar-item">
+                    <div class="bar" style="height: 72px; background: #6c63ff;"></div>
+                    <span class="bar-label">周三<br>78%</span>
+                </div>
+                <div class="bar-item">
+                    <div class="bar" style="height: 80px; background: #6c63ff;"></div>
+                    <span class="bar-label">周四<br>85%</span>
+                </div>
+                <div class="bar-item">
+                    <div class="bar" style="height: 90px; background: linear-gradient(180deg, #4ade80, #6c63ff);"></div>
+                    <span class="bar-label">今日<br>↑ 提升中</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <span class="icon">🏠</span>
+                <span>首页</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">🦉</span>
+                <span>精灵</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">📊</span>
+                <span>报告</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">👤</span>
+                <span>我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
