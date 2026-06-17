@@ -37,12 +37,12 @@
 
 | 猫头鹰·小智（基础款） | 小狐狸·巧巧（女生款） | 机甲战警（男生款） | 互动场景 |
 |:---:|:---:|:---:|:---:|
-| ![猫头鹰小智](hero_owl_desk.png) | ![小狐狸巧巧](hero_fox_desk.png) | ![机甲战警](robot_mecha.png) | ![互动场景](child_interaction.png) |
+| ![猫头鹰小智](child_interaction.png) | ![小狐狸巧巧](product_showcase.png) | ![全款式展示](robot_mecha.png) | ![互动场景](hero_fox_desk.png) |
 | 呆萌学霸 · 圆眼+眼镜 | 俏皮可爱 · 毛茸尾巴 | 酷炫科技 · LED眼灯 | 孩子与精灵共同学习 |
 
 ### 产品展示
 
-![产品渲染图](product_showcase.png)
+![产品渲染图](hero_owl_desk.png) 
 
 > 📐 **尺寸**：15cm（手掌大小）· **材质**：亲肤硅胶 · **屏幕**：LED 表情眼 · **底座**：氛围灯 + 无线充电
 
